@@ -4,8 +4,8 @@ dist: trusty
 language: bash
 
 before_install: |
-  curl -O https://bin.equinox.io/c/jewmwFCp7w9/convox-stable-linux-amd64.tgz &&\
-  tar zxvf convox-stable-linux-amd64.tgz -C /tmp
+  curl -Ls https://convox.com/install/linux.zip > /tmp/convox.zip &&\
+  sudo unzip /tmp/convox.zip -d /usr/local/bin
 
 after_success:
   - convox deploy --app voyager --rack personal/convox-install-new-rack
