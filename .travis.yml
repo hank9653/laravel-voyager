@@ -1,7 +1,7 @@
-sudo: false
+sudo: required
 dist: trusty
 
-language: python
+language: bash
 
 before_install: |
   curl -O https://bin.equinox.io/c/jewmwFCp7w9/convox-stable-linux-amd64.tgz &&\
