@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      path: .
+      manifest: Dockerfile
+    domain: ${DOMAIN}
+    port: 80
+    environment:
+      - CONVOX_ENV=local_test

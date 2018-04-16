@@ -1,0 +1,20 @@
+sudo: false
+dist: trusty
+
+language: python
+
+before_install:
+  - pip install awscli
+
+jobs:
+  include:
+  - stage: build and push ap docker image to aws ecr
+    script:
+      - eval $(aws ecr get-login --no-include-email)
+      - aws s3 cp s3://laravel-test-hank/laravel.env laravel/.env
+      - docker build -t $AP_NAME .
+      - docker tag $AP_NAME:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$AP_NAME:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$AP_NAME:latest
+      - aws ecs register-task-definition --cli-input-json file://web-service-task.json
+      - aws ecs update-service --cluster laravel --service laravel --task-definition laravel
+      
