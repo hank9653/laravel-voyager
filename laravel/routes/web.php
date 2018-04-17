@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/env', function () {
+    return env('CONVOX_ENV', 'not find env');
+});
+
+Route::get('pages', function () {
+    return view('pages');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
