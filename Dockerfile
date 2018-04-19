@@ -19,5 +19,3 @@ CMD /usr/sbin/apache2ctl -D FOREGROUND
 
 RUN apt-get update
 RUN apt-get install -y vim
-
-RUN php artisan voyager:install
