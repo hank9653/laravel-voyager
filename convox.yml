@@ -7,6 +7,7 @@ services:
     port: 80
     environment:
       - CONVOX_ENV=local_test
+      - APP_URL
       - DB_HOST
       - DB_PORT
       - DB_DATABASE
