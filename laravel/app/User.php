@@ -26,4 +26,8 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles(){
+        return $this->hasOne('TCG\Voyager\Models\Role', 'id', 'role_id');
+    }
 }

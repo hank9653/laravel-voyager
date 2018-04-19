@@ -19,9 +19,11 @@ Route::get('/env', function () {
     return env('CONVOX_ENV', 'not find env');
 });
 
-Route::get('pages', function () {
-    return view('pages');
-});
+
+
+Route::resource('products', 'ProductController');
+
+Route::resource('pages', 'PageController');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
