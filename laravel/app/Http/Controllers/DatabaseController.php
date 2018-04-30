@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\BreadService;
-
-class ProductController extends Controller
+use \TCG\Voyager\Facades\Voyager;
+class DatabaseController extends Controller
 {
-    private $breadService;
+
     private $slug;
+    private $breadService;
 
     public function __construct(BreadService $breadService)
     {
         $this->breadService = $breadService;
-        $this->slug = 'products';
+        $this->slug = 'databases';
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -66,6 +67,17 @@ class ProductController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        // $dataType = Voyager::model('DataType')->where('slug', '=', 'racks')->first();
+        
+        // if(Voyager::can('copy_racks')){
+        //     // Check permission
+        //     $this->authorize('copy', app($dataType->model_name));
+        //     //return 'ture';
+        // }else{
+        //     //return 'You don\'t have permission.';
+        // }
+
+        //return view('rack');
         return $this->breadService->edit($request, $id, $this->slug);
     }
 

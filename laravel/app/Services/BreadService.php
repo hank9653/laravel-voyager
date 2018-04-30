@@ -141,6 +141,13 @@ class BreadService extends BaseVoyagerAuthController {
     {
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
+        if(Voyager::can('edit_'.$slug)){
+            // Check permission
+            $this->authorize('edit', app($dataType->model_name));
+        }else{
+            return 'You don\'t have permission.';
+        }
+
         // Compatibility with Model binding.
         $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
 

@@ -1,4 +1,4 @@
-@extends('voyager.master')
+@extends('master')
 
 @section('page_title', __('voyager.generic.viewing').' '.$dataType->display_name_plural)
 
@@ -178,6 +178,11 @@
                                             @can('delete', $data)
                                                 <a href="javascript:;" title="{{ __('voyager.generic.delete') }}" class="btn btn-sm btn-danger pull-right delete" data-id="{{ $data->{$data->getKeyName()} }}" id="delete-{{ $data->{$data->getKeyName()} }}">
                                                     <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager.generic.delete') }}</span>
+                                                </a>
+                                            @endcan
+                                            @can('copy', $data)
+                                                <a href="" title="copy" class="btn btn-sm btn-success pull-right edit">
+                                                    <i class="voyager-documentation"></i> <span class="hidden-xs hidden-sm">copy</span>
                                                 </a>
                                             @endcan
                                             @can('edit', $data)

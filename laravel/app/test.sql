@@ -1,0 +1,1 @@
+INSERT INTO permissions ( `key`,  `table_name`,  `permission_group_id` )VALUES ( 'copy_rack', 'racks', NULL);
