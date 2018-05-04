@@ -37,6 +37,21 @@ class RackappPolicy extends BasePolicy
 
     public function edit(User $user, $model)
     {
+        // Does this model belong to the current user?
+        $current = $user->id === $model->author_id;
+
+        $env = env('APP_ENV', 'fail');
+        
+        if($env == 'local'){
+            if ( $user->role()->first()->name == 'RD') {
+                return $current || ($this->checkPermission($user, $model, 'edit') && $this->checkPermission($user, $model, 'add'));
+            }
+        }else if($env=='production_test'){
+            if ( $user->role()->first()->name == 'RD') {
+                return $current || ($this->checkPermission($user, $model, 'edit') && $this->checkPermission($user, $model, 'add'));
+            }
+        }
+       
         return false;
     }
 
