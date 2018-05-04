@@ -180,6 +180,11 @@
                                                     <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager.generic.delete') }}</span>
                                                 </a>
                                             @endcan
+                                            @can('deploy', $data)
+                                                <a href="" title="deploy" class="btn btn-sm btn-info pull-right edit">
+                                                    <i class="voyager-documentation"></i> <span class="hidden-xs hidden-sm">deploy</span>
+                                                </a>
+                                            @endcan
                                             @can('copy', $data)
                                                 <a href="" title="copy" class="btn btn-sm btn-success pull-right edit">
                                                     <i class="voyager-documentation"></i> <span class="hidden-xs hidden-sm">copy</span>

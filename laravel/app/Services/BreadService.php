@@ -185,8 +185,12 @@ class BreadService extends BaseVoyagerAuthController {
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
-        // Check permission
-        $this->authorize('add', app($dataType->model_name));
+        if(Voyager::can('add_'.$slug)){
+            // Check permission
+            $this->authorize('add', app($dataType->model_name));
+        }else{
+            return 'You don\'t have permission.';
+        }
 
         $dataTypeContent = (strlen($dataType->model_name) != 0)
                             ? new $dataType->model_name()
